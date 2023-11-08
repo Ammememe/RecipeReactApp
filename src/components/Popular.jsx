@@ -4,12 +4,15 @@ import {Splide, SplideSlide} from '@splidejs/react-splide'
 import '@splidejs/splide/dist/css/splide.min.css';
 import { Link } from "react-router-dom";
 function Popular() {
+  //useState för hantera state för populära recept
   const [popular, setPopular] = useState([]);
 
   useEffect(() => {
     getPopular();
   }, []);
 
+  //Funktion för att hämta populära recept från API, /random för random recept, antal recept som visas är 9
+  //Error handling
   const getPopular = async () => {
     const check = localStorage.getItem('popular');
   
@@ -24,7 +27,7 @@ function Popular() {
         if (!api.ok) {
           throw new Error(`Failed to fetch data from the API. Status: ${api.status}`);
         }
-        
+        //Spara populära recept lokalt, kan återställas under Applikation i local storage
         const data = await api.json();
         localStorage.setItem('popular', JSON.stringify(data.recipes));
         setPopular(data.recipes);
@@ -69,11 +72,11 @@ function Popular() {
     </div>
   );
 }
-
+// Design
 const Wrapper = styled.div`
   margin: 4rem 0rem;
 `;
-
+//Design
 const Card = styled.div`
 min-height: 25rem;
 border-radius: 2rem;
@@ -107,7 +110,7 @@ p{
 }
 
 `;
-
+//Design
 const Gradient = styled.div`
   z-index: 3;
   position: absolute;

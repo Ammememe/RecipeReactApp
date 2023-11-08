@@ -8,18 +8,20 @@ import { Link } from "react-router-dom";
 function Veggie() {
 
     const [Veggie, setVeggie] = useState([]);
-  
+  //Använd useEffect för att hämta vegetariska recept
     useEffect(() => {
       getVeggie();
     }, []);
-  
+  // Funktion för att hämta vegetariska recept från API/Local Storage
     const getVeggie = async () => {
+      //Kontrollera om det finns vegetariska recept i lokal lagring
       const check = localStorage.getItem('veggie');
     
       if (check) {
         setVeggie(JSON.parse(check));
       } else {
         try {
+          //Hämta vegetariska recept från API om det inte finns i local storage
           const api = await fetch(
             `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`
           );
@@ -27,7 +29,7 @@ function Veggie() {
           if (!api.ok) {
             throw new Error(`Failed to fetch data from the API. Status: ${api.status}`);
           }
-          
+          //Spara vegetariska recept i local storage
           const data = await api.json();
           localStorage.setItem('veggie', JSON.stringify(data.recipes));
           setVeggie(data.recipes);
@@ -72,10 +74,11 @@ function Veggie() {
     </div>
   )
 }
+//Style
 const Wrapper = styled.div`
   margin: 4rem 0rem;
 `;
-
+//style
 const Card = styled.div`
 min-height: 25rem;
 border-radius: 2rem;
@@ -109,7 +112,7 @@ p{
 }
 
 `;
-
+//style
 const Gradient = styled.div`
   z-index: 3;
   position: absolute;

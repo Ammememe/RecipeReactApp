@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Search() {
 
-
+//Använd useState för hantering av staten för inmatningsfältet
     const [input, setInput]= useState("");
     const navigate=useNavigate();
 
@@ -29,9 +29,9 @@ function Search() {
       </FormStyle>
     );
   }
-  
+  // Style för sökformuläret
   const FormStyle = styled.form`
-    margin: 0rem 20rem; /* Changed the double colons to a single colon */
+    margin: 0rem 20rem;
     position: relative;
     div{
         width: 100%;
@@ -40,7 +40,7 @@ function Search() {
   
     input {
       border: none;
-      background: linear-gradient(35deg, #494949, #313131); /* Added 'deg' after the angle */
+      background: linear-gradient(35deg, #494949, #313131); 
       color: white;
       font-size: 1.5rem;
       padding: 1rem 3rem;
@@ -53,7 +53,7 @@ function Search() {
       position: absolute;
       top: 50%;
       left: 0%;
-      transform: translate(100%, -50%); /* Added parentheses for values */
+      transform: translate(100%, -50%); 
       color: white;
     }
   `;

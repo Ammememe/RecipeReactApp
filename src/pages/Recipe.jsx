@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 function Recipe() {
+  //Hämta Parametrarna från URL useParams
   const params = useParams();
   const [details, setDetails] = useState(null);
   const [activeTab, setActiveTab] = useState("instructions");
 
+  //Funktion för att hämta detaljer om recept från API
   const fetchDetails = async () => {
     try {
       const data = await fetch(
@@ -24,7 +26,7 @@ function Recipe() {
       console.error("An error occurred:", error);
     }
   };
-
+//useEffect för att hämta receptdetaljer
   useEffect(() => {
     fetchDetails();
   }, [params.name]);
@@ -73,7 +75,7 @@ function Recipe() {
     </DetailWrapper>
   );
 }
-
+//Style
 const DetailWrapper = styled.div`
   margin-top: 10rem;
   margin-bottom: 5rem;
@@ -97,7 +99,7 @@ const DetailWrapper = styled.div`
     margin-top: 2rem;
   }
 `;
-
+//Style btn
 const Button = styled.button`
   padding: 1rem 2rem;
   color: #313131;
@@ -106,7 +108,7 @@ const Button = styled.button`
   margin-right: 2rem;
   font-weight: 600;
 `;
-
+//Style info
 const Info = styled.div`
   margin-left: 10rem;
 `;

@@ -9,6 +9,7 @@ function Searched() {
     const[searchedRecipes, setSearchedRecipes] = useState([]);
     let params= useParams();
 
+    //Funktion för att hämta sökresultat baserat på query
     const getSearched = async (name) => {
         const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`);
         const recipes = await data.json();
@@ -40,12 +41,13 @@ function Searched() {
     </Grid>
   )
 }
+//style
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 3rem;
 `;
-
+//style
 const Card = styled.div`
   img {
     width: 100%;

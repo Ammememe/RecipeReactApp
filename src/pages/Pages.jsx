@@ -7,8 +7,10 @@ import Recipe from './Recipe'
 import { AnimatePresence } from 'framer-motion'
 
 function Pages() {
+  //Använd useLocation för att hämta aktuell location
   const location = useLocation();
   return (
+    //AnimatePresence för att hantera animation in och ut
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />

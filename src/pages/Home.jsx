@@ -7,7 +7,7 @@ import React from 'react'
 
 function Home() {
   return (
-    
+    //Motion.div för animering på innehållet
     <motion.div
     animate={{opacity:1}}
     initial={{opacity:0}}

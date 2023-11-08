@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
+    //Wrap komponenter i BrowserRouter för hantering av routing
     <div className="App">
       <BrowserRouter>
         <Header />
@@ -27,7 +28,7 @@ function App() {
     </div>
   );
 }
-
+//Style
 const Logo = styled(Link)`
   text-decoration: none;
   font-size: 1.5rem;

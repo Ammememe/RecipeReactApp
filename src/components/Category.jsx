@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom'
 
 function Category() {
   return (
+    // Lista av olika kategorier
     <List>
         <SLink to={'/cuisine/Italian'}>
             <FaPizzaSlice/>
@@ -28,12 +29,14 @@ function Category() {
   )
 }
 
+//Styling av kategorier
 const List = styled.div`
 display: flex;
 justify-content: center;
 margin: 2rem 0rem;
 `;
 
+//Styling av länkar för kategorier
 const SLink = styled(NavLink)`
 display: flex;
 flex-direction: column;
