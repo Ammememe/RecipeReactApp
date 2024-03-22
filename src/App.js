@@ -37,14 +37,26 @@ const Logo = styled(Link)`
 `;
 
 const Nav = styled.div`
-  padding: 4rem 0rem;
+  padding: 2rem 1rem; /* Reduced padding for mobile */
   display: flex;
-  justify-content: flex-start;
+  justify-content: center; /* Centering on mobile */
   align-items: center;
+  flex-direction: column; /* Stack items vertically on mobile screens */
 
   svg {
-    font-size: 2rem;
+    margin-bottom: 1rem; /* Add space between icon and logo on mobile */
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row; /* Horizontal layout for larger screens */
+    justify-content: flex-start;
+    padding: 4rem 0rem;
+
+    svg {
+      margin-bottom: 0; /* Remove the bottom margin on larger screens */
+    }
   }
 `;
+
 
 export default App;

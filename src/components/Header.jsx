@@ -16,6 +16,14 @@ const HeaderContainer = styled.header`
   color: #black;
   text-align: center;
   padding: 1rem;
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.5rem; // Smaller font size for mobile
+    }
+    p {
+      font-size: 1rem; // Smaller font size for mobile
+    }
+  }
 `;
 
 export default Header;
