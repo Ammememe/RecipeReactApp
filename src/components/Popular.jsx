@@ -47,7 +47,7 @@ function Popular() {
           gap: "2rem",
           breakpoints: {
             640: {
-              perPage: 1, // This means 1 recipe per line on screens narrower than 640px
+              perPage: 1, //1 recipe per line on screens narrower than 640px
             },
             768: {
               perPage: 2, // Adjust per your need for tablets

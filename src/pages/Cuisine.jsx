@@ -1,67 +1,67 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Cuisine() {
-
-  const [cuisine, setCuisine] = useState([]);
-  //Hämta Cuisine från URL-Param med useParams
-  const params = useParams();
-//Funktion för att hämta recept som tillhör cuisine
-  const getCuisine = async (name) => {
-    //Hämta recept från API
-    const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`);
-    const recipes = await data.json();
-    setCuisine(recipes.results);
-  };
+  const [recipes, setRecipes] = useState([]);
+  const { type } = useParams();
 
   useEffect(() => {
-    getCuisine(params.type);
-    console.log(params);
-  }, [params.type]);
-  
-  return (
-    <Grid
-    animate={{opacity:1}}
-    initial={{opacity:0}}
-    exit={{opacity:0}}
-    transition={{duration: 0.5}}
-    >
-      {cuisine.map((item) => {
-        return (
-          <Card key={item.id}>
-            <Link to={'/recipe/' + item.id}>
-            <img src={item.image} alt="" />
-            <h4>{item.title}</h4>
-            </Link>
-          </Card>
+    const fetchRecipes = async () => {
+      try {
+        const data = await fetch(
+          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${type}`
         );
-      })}
+        const results = await data.json();
+        setRecipes(results.results);
+      } catch (error) {
+        console.error("Failed to fetch cuisine recipes:", error);
+      }
+    };
+
+    fetchRecipes();
+  }, [type]);
+
+  return (
+    <Grid>
+      {recipes.map((recipe) => (
+        <Card key={recipe.id}>
+          <Link to={`/recipe/${recipe.id}`}>
+            <img src={recipe.image} alt={recipe.title} />
+            <h4>{recipe.title}</h4>
+          </Link>
+        </Card>
+      ))}
     </Grid>
   );
-  
 }
-//Style
-const Grid = styled(motion.div)`
+
+// Styles
+const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  grid-gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
-//Style
+
 const Card = styled.div`
   img {
     width: 100%;
-    border-radius: 2rem;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
   }
   a {
     text-decoration: none;
   }
   h4 {
     text-align: center;
-    padding: 1rem;
+    padding: 0.5rem;
   }
 `;
-
 
 export default Cuisine;

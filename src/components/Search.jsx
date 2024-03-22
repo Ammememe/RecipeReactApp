@@ -30,7 +30,7 @@ function Search() {
     );
   }
   // Style för sökformuläret
-  const FormStyle = styled.form`
+ const FormStyle = styled.form`
   margin: 0rem 2rem; // Adjusted for better responsiveness on smaller screens
   position: relative;
   div {
