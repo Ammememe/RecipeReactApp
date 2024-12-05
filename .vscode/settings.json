@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/62555841-8d78-4292-99fe-e2701499843a/resourceGroups/RG-AmirKhat-Multi-Service-Assignment/providers/Microsoft.Web/sites/Azurearchitecture-assignment",
+    "appService.deploySubpath": "."
+}
