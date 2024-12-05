@@ -5,8 +5,8 @@ function Header() {
   return (
     //Header text
     <HeaderContainer>
-      <h1>Amir's Recipe Website</h1>
-      <p>Your source for delicious recipes!</p>
+      <h1>Welcome to Amir's Recipes</h1>
+      <p>Enjoy the recipes!</p>
     </HeaderContainer>
   );
 }
