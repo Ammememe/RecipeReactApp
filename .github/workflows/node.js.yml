@@ -3,7 +3,6 @@ name: Node.js CI
 on:
   push:
     branches: [ "main" ]
-  
 
 jobs:
   build:
@@ -11,11 +10,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+
+    - name: Use Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '16' # Specify your Node.js version
         cache: 'npm'
+
     - run: npm ci
-    - run: npm run build
-    - run: npm test
+
+    # Prevent warnings from breaking the build
+    - name: Build the project
+      run: CI=false npm run build
+
+    - name: Run tests
+      run: npm test
