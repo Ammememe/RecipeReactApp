@@ -1,41 +1,42 @@
-name: Node.js CI
+name: Node.js CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ] # Trigger on push to main branch
+  workflow_dispatch: # Allow manual triggers
 
 env:
   AZURE_WEBAPP_NAME: AmirRecipeWeb
-  AZURE_WEBAPP_PACKAGE_PATH: "./build" # Adjust the path if your build output is elsewhere
+  AZURE_WEBAPP_PACKAGE_PATH: "./build" # Path to the React build folder
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Check out the repository
+    # Step 1: Check out code
     - uses: actions/checkout@v4
 
     # Step 2: Set up Node.js
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '16' # Specify the Node.js version required
+        node-version: '16' # Ensure this matches your app requirements
         cache: 'npm'
 
     # Step 3: Install dependencies
     - name: Install dependencies
       run: npm ci
 
-    # Step 4: Build the project
+    # Step 4: Build the React app
     - name: Build the project
       run: CI=false npm run build
 
-    # Step 5: Run tests
+    # Step 5: Run tests (optional)
     - name: Run tests
       run: npm test
 
-    # Step 6: Deploy to Azure Web App
+    # Step 6: Deploy to Azure App Service
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
