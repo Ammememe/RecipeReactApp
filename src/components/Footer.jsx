@@ -7,7 +7,7 @@ function Footer() {
     <footer style={footerStyle}>
       <div style={formContainerStyle}>
         <p style={textStyle}>
-          For updates on the latest recipes, please subscribe to our newsletter:
+          Subscribe to our newsletter!
         </p>
         <NewsletterSignupForm />
       </div>
